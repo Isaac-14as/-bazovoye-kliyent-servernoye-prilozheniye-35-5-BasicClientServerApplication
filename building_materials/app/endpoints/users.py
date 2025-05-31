@@ -13,7 +13,9 @@ router = APIRouter(prefix="/users", tags=["users"])
 
 
 @router.post("/register", response_model=User)
-async def register_user(user: UserCreate):
+async def register_user(user: UserCreate, current_user: Users = Depends(get_current_user)):
+    if current_user.role != "admin":
+        raise HTTPException(status_code=403, detail="Not enough permissions")
     existing_user = await Users.objects().where(Users.username == user.username).first()
     if existing_user:
         raise HTTPException(

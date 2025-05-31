@@ -29,7 +29,7 @@ export const UserList = ({}) => {
         });
         setUsers(response);
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     };
     getUsers();
