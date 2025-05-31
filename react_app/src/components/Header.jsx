@@ -7,6 +7,12 @@ import { getUser } from "../helpers/helpers";
 export const Header = ({}) => {
   const navigate = useNavigate();
 
+  const roles = {
+    admin: "Администратор",
+    purchaser: "Покупатель",
+    seller: "Продавец",
+  };
+
   const logout = () => {
     localStorage.removeItem(authConstants.tokenString);
     localStorage.removeItem("user");
@@ -45,12 +51,23 @@ export const Header = ({}) => {
         <Link
           sx={{
             color: "white",
+            fontSize: "20px",
+            textDecoration: "none",
+            mr: "5px",
+          }}
+        >
+          {roles[getUser().role]}
+        </Link>
+        |
+        <Link
+          sx={{
+            color: "white",
             cursor: "pointer",
             transition: "all 0.2s ease-in-out",
             "&:hover": { color: "#1976d2" },
             fontSize: "20px",
             textDecoration: "none",
-            mr: "5px",
+            mx: "5px",
           }}
           onClick={() => navigate("/profile")}
         >
