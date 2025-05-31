@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { authAxios } from "../api/auth-axios";
+import { useSnackbar } from "notistack";
+import { showDefaultSnack } from "../components/DefaultSnack";
 
 export const UpdateUser = () => {
   const { id } = useParams();
@@ -25,6 +27,7 @@ export const UpdateUser = () => {
   const [passwordChanged, setPasswordChanged] = useState(false); // Флаг изменения пароля
 
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     const getUser = async () => {
@@ -40,6 +43,7 @@ export const UpdateUser = () => {
           password: "", // Пароль изначально пустой
         });
       } catch (e) {
+        showDefaultSnack(enqueueSnackbar, e.response.data.detail, "error");
         console.error(e);
       }
     };
@@ -80,8 +84,13 @@ export const UpdateUser = () => {
         method: "PUT",
         data: dataToSend,
       });
-      navigate("/user_list"); // Перенаправляем после успешного сохранения
+      showDefaultSnack(
+        enqueueSnackbar,
+        "Данные пользователя успешно изменены",
+        "success"
+      );
     } catch (e) {
+      showDefaultSnack(enqueueSnackbar, e.response.data.detail, "error");
       console.error(e);
     }
   };

@@ -11,7 +11,10 @@ import {
   Select,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
+
 import { authAxios } from "../api/auth-axios";
+import { showDefaultSnack } from "../components/DefaultSnack";
 
 export const CreateUser = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +25,7 @@ export const CreateUser = () => {
   });
 
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,8 +52,13 @@ export const CreateUser = () => {
         method: "POST",
         data: dataToSend,
       });
-      navigate("/user_list"); // Перенаправляем после успешного сохранения
+      showDefaultSnack(
+        enqueueSnackbar,
+        "Пользователь успешно зарегистрирован",
+        "success"
+      );
     } catch (e) {
+      showDefaultSnack(enqueueSnackbar, e.response.data.detail, "error");
       console.error(e);
     }
   };
@@ -81,7 +90,7 @@ export const CreateUser = () => {
         }}
       >
         <Typography variant="h5" component="h1" textAlign="center" gutterBottom>
-          Редактирование профиля
+          Регистрация нового пользователя
         </Typography>
 
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>

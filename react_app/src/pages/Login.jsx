@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authAxios, authConstants } from "../api/auth-axios";
 import axios from "axios";
+import { showDefaultSnack } from "../components/DefaultSnack";
+import { useSnackbar } from "notistack";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,6 +13,7 @@ export const Login = () => {
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,8 +45,8 @@ export const Login = () => {
         localStorage.setItem("user", JSON.stringify(response.data.user));
         navigate("/");
       } catch (e) {
-        setError(e.response.data.detail);
-        console.error("Login error:", e);
+        showDefaultSnack(enqueueSnackbar, e.response.data.detail, "error");
+        console.error(e);
       }
     };
     login();

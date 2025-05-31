@@ -1,7 +1,9 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Main } from "../pages/Main";
 import { Box } from "@mui/material";
+import { SnackbarProvider } from "notistack";
+
+import { Main } from "../pages/Main";
 import { Login } from "../pages/Login";
 import { RequireAuth } from "../components/RequireAuth";
 import { Profile } from "../pages/Profile";
@@ -12,46 +14,60 @@ import { CreateUser } from "../pages/CreatUser";
 const router = createBrowserRouter([
   {
     path: "login",
-    element: <Login />,
+    element: (
+      <SnackbarProvider maxSnack={3}>
+        <Login />
+      </SnackbarProvider>
+    ),
   },
   {
     path: "",
     element: (
-      <RequireAuth>
-        <Main />
-      </RequireAuth>
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <Main />
+        </RequireAuth>
+      </SnackbarProvider>
     ),
   },
   {
     path: "profile",
     element: (
-      <RequireAuth>
-        <Profile />
-      </RequireAuth>
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <Profile />
+        </RequireAuth>
+      </SnackbarProvider>
     ),
   },
   {
     path: "update_user/:id",
     element: (
-      <RequireAuth>
-        <UpdateUser />
-      </RequireAuth>
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <UpdateUser />
+        </RequireAuth>
+      </SnackbarProvider>
     ),
   },
   {
     path: "create_user",
     element: (
-      <RequireAuth>
-        <CreateUser />
-      </RequireAuth>
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <CreateUser />
+        </RequireAuth>
+      </SnackbarProvider>
     ),
   },
   {
     path: "user_list",
     element: (
-      <RequireAuth>
-        <UserList />
-      </RequireAuth>
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <UserList />
+        </RequireAuth>
+      </SnackbarProvider>
     ),
   },
 
