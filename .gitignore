@@ -1,0 +1,82 @@
+# Общие системные файлы
+.DS_Store
+*.log
+*.swp
+*.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+### Python ###
+# Виртуальное окружение
+venv/
+.env/
+.venv/
+ENV/
+
+# Кэш Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Распределенные файлы и зависимости
+*.egg-info/
+.eggs/
+dist/
+build/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Тестовые и отладочные файлы
+.coverage
+htmlcov/
+.pytest_cache/
+*.mo
+*.pot
+
+### FastAPI ###
+# Файлы базы данных (если используется SQLite)
+*.db
+*.sqlite
+
+### Node.js / React ###
+# Зависимости
+node_modules/
+/.pnp
+.pnp.js
+
+# Кэш и временные файлы
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.cache/
+
+# Сборка
+build/
+dist/
+.next/
+out/
+
+# Статический анализ
+.eslintcache
+
+# Настройки IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+### React ###
+# Переменные среды
+.env
+.env.local
+
+# Статические файлы (если используются)
+public/static
+
+# Дополнительные настройки
+.sass-cache/

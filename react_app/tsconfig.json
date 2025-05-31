@@ -1,0 +1,16 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  
+  "compilerOptions": {
+    "strict": false, // отключить строгий режим
+    "noImplicitAny": false, // разрешить неявный any
+    "strictNullChecks": false, // отключить строгую проверку на null
+    "skipLibCheck": true, // пропуск проверки типов в node_modules
+    "forceConsistentCasingInFileNames": true,
+  }
+
+}
