@@ -1,16 +1,9 @@
 import { Box, Paper, Typography, Button } from "@mui/material";
 import { getUser } from "../helpers/helpers";
+import { roles } from "../helpers/roles";
 
 export const Profile = ({}) => {
   // Функция для преобразования роли в читаемый текст
-  const getRoleName = (role) => {
-    const roles = {
-      admin: "Администратор",
-      purchaser: "Покупатель",
-      seller: "Продавец",
-    };
-    return roles[role] || role;
-  };
 
   return (
     <Box
@@ -44,7 +37,7 @@ export const Profile = ({}) => {
             <strong>ФИО:</strong> {getUser().full_name}
           </Typography>
           <Typography variant="subtitle1" gutterBottom>
-            <strong>Роль:</strong> {getRoleName(getUser().role)}
+            <strong>Роль:</strong> {roles[getUser().role]}
           </Typography>
         </Box>
       </Paper>

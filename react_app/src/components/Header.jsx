@@ -3,15 +3,10 @@ import HomeIcon from "@mui/icons-material/Home";
 import { authAxios, authConstants } from "../api/auth-axios";
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../helpers/helpers";
+import { roles } from "../helpers/roles";
 
 export const Header = ({}) => {
   const navigate = useNavigate();
-
-  const roles = {
-    admin: "Администратор",
-    purchaser: "Покупатель",
-    seller: "Продавец",
-  };
 
   const logout = () => {
     localStorage.removeItem(authConstants.tokenString);

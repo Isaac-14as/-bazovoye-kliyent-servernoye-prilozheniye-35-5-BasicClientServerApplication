@@ -15,18 +15,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { authAxios } from "../api/auth-axios";
+import { roles } from "../helpers/roles";
 
 export const UserList = ({}) => {
   const [users, setUsers] = useState(null);
-
-  const getRoleName = (role) => {
-    const roles = {
-      admin: "Администратор",
-      purchaser: "Покупатель",
-      seller: "Продавец",
-    };
-    return roles[role] || role;
-  };
 
   useEffect(() => {
     const getUsers = async () => {
@@ -101,7 +93,7 @@ export const UserList = ({}) => {
                   <TableCell>{user.id}</TableCell>
                   <TableCell>{user.username}</TableCell>
                   <TableCell>{user.full_name}</TableCell>
-                  <TableCell>{getRoleName(user.role)}</TableCell>
+                  <TableCell>{roles[user.role]}</TableCell>
                   <TableCell align="right">
                     <IconButton
                       component={Link}
