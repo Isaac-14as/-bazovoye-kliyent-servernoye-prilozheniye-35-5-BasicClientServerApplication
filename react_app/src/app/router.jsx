@@ -4,6 +4,9 @@ import { Main } from "../pages/Main";
 import { Box } from "@mui/material";
 import { Login } from "../pages/Login";
 import { RequireAuth } from "../components/RequireAuth";
+import { Profile } from "../pages/Profile";
+import { UpdateUser } from "../pages/UpdateUser";
+import { UserList } from "../pages/UserList";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +18,30 @@ const router = createBrowserRouter([
     element: (
       <RequireAuth>
         <Main />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "profile",
+    element: (
+      <RequireAuth>
+        <Profile />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "update_user/:id",
+    element: (
+      <RequireAuth>
+        <UpdateUser />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "user_list",
+    element: (
+      <RequireAuth>
+        <UserList />
       </RequireAuth>
     ),
   },

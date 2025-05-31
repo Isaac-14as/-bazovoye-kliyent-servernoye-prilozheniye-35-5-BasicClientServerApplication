@@ -39,7 +39,7 @@ export const Login = () => {
           authConstants.tokenString,
           response.data.access_token
         );
-        localStorage.setItem("username", username);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
         navigate("/");
       } catch (e) {
         setError(e.response.data.detail);
@@ -55,7 +55,7 @@ export const Login = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        minHeight: "100vh",
+        minHeight: "calc(100vh - 100px)",
         bgcolor: "background.default",
       }}
     >

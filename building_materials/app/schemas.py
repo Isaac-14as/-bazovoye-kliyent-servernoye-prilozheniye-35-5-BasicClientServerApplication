@@ -14,11 +14,18 @@ class TokenData(BaseModel):
 class UserBase(BaseModel):
     username: str = Field(...)
     full_name: str = Field(...)
-    role: str = Field(..., regex="^(admin|purchaser|seller)$")
+    role: str = Field(...)
 
 
 class UserCreate(UserBase):
     password: str = Field(...)
+
+
+class UserUpdate(BaseModel):
+    username: Optional[str] = Field(None)
+    full_name: Optional[str] = Field(None)
+    role: Optional[str] = Field(None)
+    password: Optional[str] = Field(None)
 
 
 class User(UserBase):

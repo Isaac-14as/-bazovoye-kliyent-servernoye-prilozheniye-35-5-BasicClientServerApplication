@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from app.models import Users
-from app.schemas import User, UserCreate
+from app.schemas import User, UserCreate, UserUpdate
 from app.auth import (
     get_current_user,
     get_password_hash
@@ -60,7 +60,7 @@ async def read_user(user_id: int, current_user: User = Depends(get_current_user)
 @router.put("/{user_id}", response_model=User)
 async def update_user(
     user_id: int,
-    user_data: UserCreate,
+    user_data: UserUpdate,  # Используем UserUpdate вместо UserCreate
     current_user: User = Depends(get_current_user)
 ):
     if current_user.role != "admin" and current_user.id != user_id:
@@ -70,13 +70,19 @@ async def update_user(
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
 
-    update_data = user_data.dict(exclude_unset=True)
+    update_data = user_data.dict(exclude_unset=True, exclude_none=True)
+
+    # Обновляем пароль только если он был передан
     if 'password' in update_data:
         update_data['password_hash'] = get_password_hash(
             update_data.pop('password'))
 
-    # Изменяем способ обновления:
-    await Users.update().where(Users.id == user_id).values(**update_data)
+    # Удаляем None-значения
+    update_data = {k: v for k, v in update_data.items() if v is not None}
+
+    if update_data:  # Если есть что обновлять
+        await Users.update().where(Users.id == user_id).values(**update_data)
+
     updated_user = await Users.objects().where(Users.id == user_id).first()
     return updated_user
 

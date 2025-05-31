@@ -1,14 +1,15 @@
-import { Box, IconButton, Link } from "@mui/material";
+import { Box, IconButton, Link, Typography } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import { authAxios, authConstants } from "../api/auth-axios";
 import { useNavigate } from "react-router-dom";
+import { getUser } from "../helpers/helpers";
 
 export const Header = ({}) => {
   const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem(authConstants.tokenString);
-    localStorage.removeItem("username");
+    localStorage.removeItem("user");
     navigate("/login");
   };
 
@@ -35,12 +36,12 @@ export const Header = ({}) => {
             borderColor: "#1976d2",
           },
         }}
+        onClick={() => navigate("/")}
       >
         <HomeIcon sx={{ color: "#fff", fontSize: "2rem" }} />
       </IconButton>
       <Box sx={{ fontSize: "20px" }}>Название</Box>
       <Box sx={{ fontSize: "20px" }}>
-        {localStorage.getItem("username")} |{" "}
         <Link
           sx={{
             color: "white",
@@ -48,6 +49,23 @@ export const Header = ({}) => {
             transition: "all 0.2s ease-in-out",
             "&:hover": { color: "#1976d2" },
             fontSize: "20px",
+            textDecoration: "none",
+            mr: "5px",
+          }}
+          onClick={() => navigate("/profile")}
+        >
+          {getUser().full_name}
+        </Link>
+        |
+        <Link
+          sx={{
+            color: "white",
+            cursor: "pointer",
+            transition: "all 0.2s ease-in-out",
+            "&:hover": { color: "#1976d2" },
+            fontSize: "20px",
+            textDecoration: "none",
+            ml: "5px",
           }}
           onClick={() => logout()}
         >

@@ -14,7 +14,7 @@ from ..schemas import User
 router = APIRouter(tags=["auth"])
 
 
-@router.post("/login", response_model=dict, include_in_schema=True)
+@router.post("/login", include_in_schema=True)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     user = await authenticate_user(form_data.username, form_data.password)
     if not user:
@@ -28,7 +28,13 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
         data={"sub": user.username}, expires_delta=access_token_expires
     )
 
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": access_token,
+            "token_type": "bearer",
+            "user": User(id=user.id,
+                         username=user.username,
+                         full_name=user.full_name,
+                         role=user.role)
+            }
 
 
 @router.get("/me", response_model=User)
