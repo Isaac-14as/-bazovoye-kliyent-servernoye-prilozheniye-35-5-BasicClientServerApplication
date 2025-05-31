@@ -7,6 +7,7 @@ import { RequireAuth } from "../components/RequireAuth";
 import { Profile } from "../pages/Profile";
 import { UpdateUser } from "../pages/UpdateUser";
 import { UserList } from "../pages/UserList";
+import { CreateUser } from "../pages/CreatUser";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,14 @@ const router = createBrowserRouter([
     element: (
       <RequireAuth>
         <UpdateUser />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: "create_user",
+    element: (
+      <RequireAuth>
+        <CreateUser />
       </RequireAuth>
     ),
   },

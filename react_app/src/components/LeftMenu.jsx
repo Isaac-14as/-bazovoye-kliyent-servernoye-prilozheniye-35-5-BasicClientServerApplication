@@ -17,6 +17,7 @@ export const LeftMenu = () => {
       setMenuItems([
         ...menuItems,
         { text: "Пользователи", path: "/user_list" },
+        { text: "Добавить пользователя", path: "/create_user" },
       ]);
     }
   }, []);
