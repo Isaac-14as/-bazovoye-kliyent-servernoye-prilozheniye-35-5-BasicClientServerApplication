@@ -10,8 +10,12 @@ import { Profile } from "../pages/Profile";
 import { UpdateUser } from "../pages/UpdateUser";
 import { UserList } from "../pages/UserList";
 import { CreateUser } from "../pages/CreatUser";
+import { ProductList } from "../pages/ProductList";
+import { UpdateProduct } from "../pages/UpdateProduct";
+import { CreateProduct } from "../pages/CreateProduct";
 
 const router = createBrowserRouter([
+  // Пользователи
   {
     path: "login",
     element: (
@@ -41,7 +45,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "update_user/:id",
+    path: "users/update/:id",
     element: (
       <SnackbarProvider maxSnack={3}>
         <RequireAuth>
@@ -51,7 +55,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "create_user",
+    path: "users/create",
     element: (
       <SnackbarProvider maxSnack={3}>
         <RequireAuth>
@@ -61,11 +65,43 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "user_list",
+    path: "users",
     element: (
       <SnackbarProvider maxSnack={3}>
         <RequireAuth>
           <UserList />
+        </RequireAuth>
+      </SnackbarProvider>
+    ),
+  },
+  // Товары
+  {
+    path: "products",
+    element: (
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <ProductList />
+        </RequireAuth>
+      </SnackbarProvider>
+    ),
+  },
+  {
+    path: "products/update/:id",
+    element: (
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <UpdateProduct />
+        </RequireAuth>
+      </SnackbarProvider>
+    ),
+  },
+
+  {
+    path: "products/create",
+    element: (
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <CreateProduct />
         </RequireAuth>
       </SnackbarProvider>
     ),

@@ -158,3 +158,36 @@ class PurchaseWithDetails(Purchase):
 class SaleWithDetails(Sale):
     user: User
     items: List[SaleItem]
+
+
+# товары
+class ProductBase(BaseModel):
+    name: str = Field(..., max_length=100)
+    supplier_id: int
+    unit: str = Field(..., max_length=20)
+    purchase_price: float = Field(..., gt=0)
+    selling_price: float = Field(..., gt=0)
+    min_stock_level: int = Field(0, ge=0)
+    current_quantity: int = Field(0, ge=0)
+
+
+class ProductCreate(ProductBase):
+    pass
+
+
+class ProductUpdate(BaseModel):
+    name: Optional[str] = Field(None, max_length=100)
+    supplier_id: Optional[int] = None
+    unit: Optional[str] = Field(None, max_length=20)
+    purchase_price: Optional[float] = Field(None, gt=0)
+    selling_price: Optional[float] = Field(None, gt=0)
+    min_stock_level: Optional[int] = Field(None, ge=0)
+
+
+# Поставщики
+class SupplierUpdate(BaseModel):
+    name: Optional[str] = Field(None, max_length=100)
+    contact_person: Optional[str] = Field(None, max_length=100)
+    phone: Optional[str] = Field(None, max_length=20)
+    email: Optional[str] = Field(None, max_length=100)
+    address: Optional[str] = None

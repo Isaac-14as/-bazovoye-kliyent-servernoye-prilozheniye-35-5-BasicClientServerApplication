@@ -108,6 +108,7 @@ export const UpdateUser = () => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "calc(100vh - 100px)",
+        ml: "240px", // Отступ для бокового меню
         bgcolor: "background.default",
       }}
     >
@@ -185,7 +186,7 @@ export const UpdateUser = () => {
             <Button
               fullWidth
               variant="outlined"
-              onClick={() => navigate("/user_list")}
+              onClick={() => navigate("/users")}
             >
               Отмена
             </Button>

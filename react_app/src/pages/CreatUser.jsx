@@ -75,6 +75,7 @@ export const CreateUser = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        ml: "240px", // Отступ для бокового меню
         minHeight: "calc(100vh - 100px)",
         bgcolor: "background.default",
       }}
@@ -153,7 +154,7 @@ export const CreateUser = () => {
             <Button
               fullWidth
               variant="outlined"
-              onClick={() => navigate("/user_list")}
+              onClick={() => navigate("/users")}
             >
               Отмена
             </Button>

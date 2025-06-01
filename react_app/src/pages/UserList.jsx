@@ -10,6 +10,7 @@ import {
   TableRow,
   IconButton,
   CircularProgress,
+  Button,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
@@ -18,7 +19,7 @@ import { authAxios } from "../api/auth-axios";
 import { roles } from "../helpers/roles";
 
 export const UserList = ({}) => {
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -35,27 +36,15 @@ export const UserList = ({}) => {
     getUsers();
   }, []);
 
-  if (!users)
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "calc(100vh - 100px)",
-        }}
-      >
-        <CircularProgress size={100} />
-      </Box>
-    );
-
   return (
     <Box
       sx={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        mt: "100px",
         minHeight: "calc(100vh - 100px)",
+        ml: "240px", // Отступ для бокового меню
         bgcolor: "background.default",
         p: 2,
       }}
@@ -72,9 +61,14 @@ export const UserList = ({}) => {
           overflow: "hidden",
         }}
       >
-        <Typography variant="h5" component="h1" textAlign="center" gutterBottom>
-          Список пользователей
-        </Typography>
+        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
+          <Typography variant="h5" component="h1">
+            Список пользователей
+          </Typography>
+          <Button variant="contained" component={Link} to="/users/create">
+            Добавить пользователя
+          </Button>
+        </Box>
 
         <TableContainer sx={{ flex: 1, overflow: "auto" }}>
           <Table stickyHeader>
@@ -97,7 +91,7 @@ export const UserList = ({}) => {
                   <TableCell align="right">
                     <IconButton
                       component={Link}
-                      to={`/update_user/${user.id}`}
+                      to={`/users/update/${user.id}`}
                       color="primary"
                       aria-label="edit"
                     >

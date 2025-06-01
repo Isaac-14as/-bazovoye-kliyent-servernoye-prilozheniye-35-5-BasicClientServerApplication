@@ -13,13 +13,15 @@ export const LeftMenu = () => {
   const [menuItems, setMenuItems] = useState([]);
 
   useEffect(() => {
+    let menuItemsList = [];
     if (getUser().role === "admin") {
-      setMenuItems([
-        ...menuItems,
-        { text: "Пользователи", path: "/user_list" },
-        { text: "Добавить пользователя", path: "/create_user" },
-      ]);
+      menuItemsList.push({ text: "Пользователи", path: "/users" });
     }
+    if (getUser().role === "admin" || getUser().role === "purchaser") {
+      menuItemsList.push({ text: "Товары", path: "/products" });
+    }
+
+    setMenuItems(menuItemsList);
   }, []);
 
   return (

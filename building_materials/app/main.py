@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.auth import get_password_hash
+from app.endpoints import products, suppliers
 from app.models import Users
 from app.schemas import UserCreate
 from piccolo_conf import DB
@@ -21,6 +22,8 @@ app.add_middleware(
 # Подключение роутеров
 app.include_router(auth.router)
 app.include_router(users.router, tags=["users"])
+app.include_router(products.router)
+app.include_router(suppliers.router)
 
 
 async def create_admin_user():
