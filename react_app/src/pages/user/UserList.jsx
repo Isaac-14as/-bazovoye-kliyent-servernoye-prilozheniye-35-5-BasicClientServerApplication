@@ -15,9 +15,9 @@ import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { authAxios } from "../api/auth-axios";
-import { roles } from "../helpers/roles";
-import { scrollSyles } from "../helpers/styles";
+import { authAxios } from "../../api/auth-axios";
+import { roles } from "../../helpers/roles";
+import { scrollSyles } from "../../helpers/styles";
 
 export const UserList = ({}) => {
   const [users, setUsers] = useState([]);

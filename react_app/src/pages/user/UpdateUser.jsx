@@ -11,9 +11,9 @@ import {
   Select,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
-import { authAxios } from "../api/auth-axios";
+import { authAxios } from "../../api/auth-axios";
 import { useSnackbar } from "notistack";
-import { showDefaultSnack } from "../components/DefaultSnack";
+import { showDefaultSnack } from "../../components/DefaultSnack";
 
 export const UpdateUser = () => {
   const { id } = useParams();

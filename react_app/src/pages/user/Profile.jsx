@@ -1,6 +1,6 @@
 import { Box, Paper, Typography, Button } from "@mui/material";
-import { getUser } from "../helpers/helpers";
-import { roles } from "../helpers/roles";
+import { getUser } from "../../helpers/helpers";
+import { roles } from "../../helpers/roles";
 
 export const Profile = ({}) => {
   // Функция для преобразования роли в читаемый текст

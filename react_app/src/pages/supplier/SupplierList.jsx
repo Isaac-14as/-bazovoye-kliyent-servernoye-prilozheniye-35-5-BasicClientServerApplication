@@ -16,10 +16,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 import { useSnackbar } from "notistack";
-import { showDefaultSnack } from "../components/DefaultSnack";
+import { showDefaultSnack } from "../../components/DefaultSnack";
 
-import { authAxios } from "../api/auth-axios";
-import { scrollSyles } from "../helpers/styles";
+import { authAxios } from "../../api/auth-axios";
+import { scrollSyles } from "../../helpers/styles";
 
 export const SupplierList = () => {
   const [suppliers, setSuppliers] = useState([]);

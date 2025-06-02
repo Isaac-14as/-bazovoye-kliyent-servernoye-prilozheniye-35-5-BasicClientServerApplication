@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Paper,
@@ -8,12 +8,11 @@ import {
   Button,
   Alert,
 } from "@mui/material";
-import { authAxios } from "../api/auth-axios";
+import { authAxios } from "../../api/auth-axios";
 import { useSnackbar } from "notistack";
-import { showDefaultSnack } from "../components/DefaultSnack";
+import { showDefaultSnack } from "../../components/DefaultSnack";
 
-export const UpdateSupplier = () => {
-  const { id } = useParams();
+export const CreateSupplier = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
@@ -21,27 +20,6 @@ export const UpdateSupplier = () => {
   });
 
   const { enqueueSnackbar } = useSnackbar();
-
-  useEffect(() => {
-    // Загрузка данных товара
-    const fetchSupplierData = async () => {
-      try {
-        const response = await authAxios({
-          url: `http://127.0.0.1:8000/suppliers/${id}`,
-          method: "GET",
-        });
-        setFormData({
-          name: response.name,
-          phone: response.phone,
-        });
-      } catch (e) {
-        console.error(e);
-        showDefaultSnack(enqueueSnackbar, e.response.data.detail, "error");
-      }
-    };
-
-    fetchSupplierData();
-  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,8 +44,8 @@ export const UpdateSupplier = () => {
 
     try {
       await authAxios({
-        url: `http://127.0.0.1:8000/suppliers/${id}`,
-        method: "PUT",
+        url: "http://127.0.0.1:8000/suppliers/",
+        method: "POST",
         data: formData,
       });
       showDefaultSnack(enqueueSnackbar, "Поставщик успешно создан", "success");

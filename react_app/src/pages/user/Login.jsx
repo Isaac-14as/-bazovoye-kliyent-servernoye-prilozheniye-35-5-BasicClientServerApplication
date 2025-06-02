@@ -1,9 +1,9 @@
 import { Box, TextField, Button, Typography, Paper, Link } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { authAxios, authConstants } from "../api/auth-axios";
+import { authAxios, authConstants } from "../../api/auth-axios";
 import axios from "axios";
-import { showDefaultSnack } from "../components/DefaultSnack";
+import { showDefaultSnack } from "../../components/DefaultSnack";
 import { useSnackbar } from "notistack";
 
 export const Login = () => {
