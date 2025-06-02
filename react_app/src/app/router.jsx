@@ -3,19 +3,23 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Box } from "@mui/material";
 import { SnackbarProvider } from "notistack";
 
-import { Main } from "../pages/Main";
-import { Login } from "../pages/Login";
 import { RequireAuth } from "../components/RequireAuth";
-import { Profile } from "../pages/Profile";
-import { UpdateUser } from "../pages/UpdateUser";
-import { UserList } from "../pages/UserList";
-import { CreateUser } from "../pages/CreatUser";
-import { ProductList } from "../pages/ProductList";
-import { UpdateProduct } from "../pages/UpdateProduct";
-import { CreateProduct } from "../pages/CreateProduct";
-import { SupplierList } from "../pages/SupplierList";
-import { CreateSupplier } from "../pages/CreateSupplier";
-import { UpdateSupplier } from "../pages/UpdateSupplier";
+
+import { Main } from "../pages/Main";
+
+import { Login } from "../pages/user/Login";
+import { UpdateUser } from "../pages/user/UpdateUser";
+import { UserList } from "../pages/user/UserList";
+import { Profile } from "../pages/user/Profile";
+import { CreateUser } from "../pages/user/CreatUser";
+
+import { ProductList } from "../pages/product/ProductList";
+import { UpdateProduct } from "../pages/product/UpdateProduct";
+import { CreateProduct } from "../pages/product/CreateProduct";
+
+import { SupplierList } from "../pages/supplier/SupplierList";
+import { CreateSupplier } from "../pages/supplier/CreateSupplier";
+import { UpdateSupplier } from "../pages/supplier/UpdateSupplier";
 
 const router = createBrowserRouter([
   // Пользователи

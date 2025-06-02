@@ -13,9 +13,9 @@ import {
   Divider,
 } from "@mui/material";
 import { useSnackbar } from "notistack";
-import { showDefaultSnack } from "../components/DefaultSnack";
+import { showDefaultSnack } from "../../components/DefaultSnack";
 
-import { authAxios } from "../api/auth-axios";
+import { authAxios } from "../../api/auth-axios";
 
 export const CreateProduct = () => {
   const navigate = useNavigate();

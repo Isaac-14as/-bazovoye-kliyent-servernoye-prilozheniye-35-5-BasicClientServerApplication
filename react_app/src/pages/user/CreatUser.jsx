@@ -13,8 +13,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
-import { authAxios } from "../api/auth-axios";
-import { showDefaultSnack } from "../components/DefaultSnack";
+import { authAxios } from "../../api/auth-axios";
+import { showDefaultSnack } from "../../components/DefaultSnack";
 
 export const CreateUser = () => {
   const [formData, setFormData] = useState({

@@ -39,9 +39,7 @@ class Products(Table):
     name = Varchar(length=100)
     supplier_id = ForeignKey(Suppliers)
     unit = Varchar(length=20)  # шт, кг, м и т.д.
-    purchase_price = Numeric(digits=(10, 2))
     selling_price = Numeric(digits=(10, 2))
-    min_stock_level = Integer(default=0)
     current_quantity = Integer(default=0)
     created_at = Timestamp(default=TimestampNow())
 
@@ -51,9 +49,7 @@ class Products(Table):
 class Purchases(Table):
     supplier_id = ForeignKey(Suppliers)
     user = ForeignKey(Users)  # Кто оформил закупку
-    total_amount = Numeric(digits=(12, 2))
     purchase_date = Timestamp(default=TimestampNow())
-    notes = Text(null=True)
 
 # Позиции закупок
 
@@ -69,10 +65,8 @@ class PurchaseItems(Table):
 
 class Sales(Table):
     user = ForeignKey(Users)  # Кто оформил продажу
-    total_amount = Numeric(digits=(12, 2))
     sale_date = Timestamp(default=TimestampNow())
     client_name = Varchar(length=100, null=True)
-    payment_method = Varchar(length=20, default='cash')
 
 # Позиции продаж
 
@@ -81,4 +75,3 @@ class SaleItems(Table):
     sale = ForeignKey(Sales)
     product = ForeignKey(Products)
     quantity = Integer()
-    unit_price = Numeric(digits=(10, 2))

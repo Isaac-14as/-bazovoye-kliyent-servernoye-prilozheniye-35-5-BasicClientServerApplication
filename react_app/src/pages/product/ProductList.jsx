@@ -15,8 +15,8 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
-import { authAxios } from "../api/auth-axios";
-import { scrollSyles } from "../helpers/styles";
+import { authAxios } from "../../api/auth-axios";
+import { scrollSyles } from "../../helpers/styles";
 
 export const ProductList = () => {
   const [products, setProducts] = useState([]);
