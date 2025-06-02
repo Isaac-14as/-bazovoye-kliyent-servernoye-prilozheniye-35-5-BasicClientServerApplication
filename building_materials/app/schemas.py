@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 from typing import List, Optional
 from pydantic import BaseModel, Field
 
@@ -56,7 +56,6 @@ class Supplier(SupplierBase):
 class ProductBase(BaseModel):
     name: str = Field(..., max_length=100)
     unit: str = Field(..., max_length=20)
-    purchase_price: float = Field(..., gt=0)
     selling_price: float = Field(..., gt=0)
     current_quantity: int = Field(..., ge=0)
 
@@ -92,6 +91,17 @@ class PurchaseItemCreate(PurchaseItemBase):
     pass
 
 
+class PurchaseItemCreate(BaseModel):
+    product_id: int
+    quantity: int
+    unit_price: float
+
+
+class PurchaseCreate(BaseModel):
+    purchase_date: datetime = None
+    items: list[PurchaseItemCreate]
+
+
 class PurchaseItem(PurchaseItemBase):
     id: int
     purchase_id: int
@@ -101,11 +111,11 @@ class PurchaseItem(PurchaseItemBase):
 
 
 class PurchaseBase(BaseModel):
-    supplier_id: int = Field(..., gt=0)
     purchase_date: Optional[datetime] = None
 
 
-class PurchaseCreate(PurchaseBase):
+class PurchaseCreate(BaseModel):
+    purchase_date: Optional[date] = None
     items: List[PurchaseItemCreate] = Field(..., min_items=1)
 
 
@@ -121,7 +131,6 @@ class Purchase(PurchaseBase):
 class SaleItemBase(BaseModel):
     product_id: int = Field(..., gt=0)
     quantity: int = Field(..., gt=0)
-    unit_price: float = Field(..., gt=0)
 
 
 class SaleItemCreate(SaleItemBase):
@@ -176,9 +185,7 @@ class ProductBase(BaseModel):
     name: str = Field(..., max_length=100)
     supplier_id: int
     unit: str = Field(..., max_length=20)
-    purchase_price: float = Field(..., gt=0)
     selling_price: float = Field(..., gt=0)
-    min_stock_level: int = Field(0, ge=0)
     current_quantity: int = Field(0, ge=0)
 
 
@@ -191,9 +198,7 @@ class ProductUpdate(BaseModel):
     supplier_id: Optional[int] = None
     unit: Optional[str] = Field(None, max_length=20)
     current_quantity: Optional[int] = Field(None, gt=0)
-    purchase_price: Optional[float] = Field(None, gt=0)
     selling_price: Optional[float] = Field(None, gt=0)
-    min_stock_level: Optional[int] = Field(None, ge=0)
 
 
 # Поставщики
@@ -201,5 +206,3 @@ class SupplierUpdate(BaseModel):
     name: Optional[str] = Field(None, max_length=100)
     contact_person: Optional[str] = Field(None, max_length=100)
     phone: Optional[str] = Field(None, max_length=20)
-    email: Optional[str] = Field(None, max_length=100)
-    address: Optional[str] = None

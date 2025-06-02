@@ -26,7 +26,6 @@ export const UpdateProduct = () => {
   const [formData, setFormData] = useState({
     name: "",
     unit: "",
-    purchase_price: 0,
     selling_price: 0,
     current_quantity: 0,
     supplier_id: "",
@@ -45,7 +44,6 @@ export const UpdateProduct = () => {
         setFormData({
           name: response.name,
           unit: response.unit,
-          purchase_price: response.purchase_price,
           selling_price: response.selling_price,
           current_quantity: response.current_quantity,
           supplier_id: response.supplier_id,
@@ -104,7 +102,6 @@ export const UpdateProduct = () => {
         data: {
           name: formData.name,
           unit: formData.unit,
-          purchase_price: formData.purchase_price,
           selling_price: formData.selling_price,
           current_quantity: Number(formData.current_quantity),
           supplier_id: formData.supplier_id,
@@ -165,17 +162,6 @@ export const UpdateProduct = () => {
           />
 
           <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
-            <TextField
-              required
-              fullWidth
-              type="number"
-              label="Цена закупки"
-              name="purchase_price"
-              value={formData.purchase_price}
-              onChange={handleChange}
-              inputProps={{ min: 0, step: 0.01 }}
-            />
-
             <TextField
               required
               fullWidth

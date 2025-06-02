@@ -47,16 +47,15 @@ class Products(Table):
 
 
 class Purchases(Table):
-    supplier_id = ForeignKey(Suppliers)
-    user = ForeignKey(Users)  # Кто оформил закупку
+    user_id = ForeignKey(Users)  # Кто оформил закупку
     purchase_date = Timestamp(default=TimestampNow())
 
 # Позиции закупок
 
 
 class PurchaseItems(Table):
-    purchase = ForeignKey(Purchases)
-    product = ForeignKey(Products)
+    purchase_id = ForeignKey(Purchases)
+    product_id = ForeignKey(Products)
     quantity = Integer()
     unit_price = Numeric(digits=(10, 2))
 

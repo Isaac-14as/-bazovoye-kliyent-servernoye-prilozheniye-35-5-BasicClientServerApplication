@@ -23,6 +23,7 @@ export const LeftMenu = () => {
 
     if (getUser().role === "admin" || getUser().role === "purchaser") {
       menuItemsList.push({ text: "Поставщики", path: "/suppliers" });
+      menuItemsList.push({ text: "Закупки", path: "/purchases" });
     }
 
     setMenuItems(menuItemsList);

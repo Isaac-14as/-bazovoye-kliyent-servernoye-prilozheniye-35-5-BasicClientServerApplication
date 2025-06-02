@@ -29,7 +29,6 @@ CREATE TABLE products (
 -- Закупки
 CREATE TABLE purchases (
     id SERIAL PRIMARY KEY,
-    supplier_id INTEGER REFERENCES suppliers(id) NOT NULL,
     user_id INTEGER REFERENCES users(id) NOT NULL,
     purchase_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -90,14 +89,14 @@ INSERT INTO products (name, supplier_id, unit, selling_price, current_quantity) 
 ('Саморезы по дереву 3.5x45', 4, 'уп 100шт', 180.00, 30);
 
 -- Заполнение таблицы закупок
-INSERT INTO purchases (supplier_id, user_id, purchase_date) VALUES
-(1, 1, '2023-01-15 09:30:00'),
-(5, 1, '2023-01-16 11:45:00'),
-(3, 3, '2023-01-18 14:20:00'),
-(2, 1, '2023-01-20 10:15:00'),
-(7, 5, '2023-01-22 16:30:00'),
-(4, 1, '2023-01-25 13:00:00'),
-(1, 3, '2023-01-28 09:15:00');
+INSERT INTO purchases (user_id, purchase_date) VALUES
+(1, '2023-01-15 09:30:00'),
+(1, '2023-01-16 11:45:00'),
+(3, '2023-01-18 14:20:00'),
+(1, '2023-01-20 10:15:00'),
+(5, '2023-01-22 16:30:00'),
+(1, '2023-01-25 13:00:00'),
+(3, '2023-01-28 09:15:00');
 
 -- Заполнение таблицы позиций закупок
 INSERT INTO purchase_items (purchase_id, product_id, quantity, unit_price) VALUES
