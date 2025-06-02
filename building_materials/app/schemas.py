@@ -34,6 +34,8 @@ class User(UserBase):
     class Config:
         orm_mode = True
 
+# Поставщики
+
 
 class SupplierBase(BaseModel):
     name: str = Field(..., max_length=100)
@@ -66,6 +68,15 @@ class ProductCreate(ProductBase):
 class Product(ProductBase):
     id: int
     supplier_id: int
+
+    class Config:
+        orm_mode = True
+
+# Новая схема для ответа (добавьте в schemas.py)
+
+
+class ProductWithSupplier(Product):
+    supplier: Supplier  # Добавляем полную информацию о поставщике
 
     class Config:
         orm_mode = True
@@ -179,6 +190,7 @@ class ProductUpdate(BaseModel):
     name: Optional[str] = Field(None, max_length=100)
     supplier_id: Optional[int] = None
     unit: Optional[str] = Field(None, max_length=20)
+    current_quantity: Optional[int] = Field(None, gt=0)
     purchase_price: Optional[float] = Field(None, gt=0)
     selling_price: Optional[float] = Field(None, gt=0)
     min_stock_level: Optional[int] = Field(None, ge=0)

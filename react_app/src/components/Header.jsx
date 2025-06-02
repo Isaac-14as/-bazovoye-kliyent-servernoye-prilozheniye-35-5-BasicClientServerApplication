@@ -46,7 +46,7 @@ export const Header = ({}) => {
       >
         <HomeIcon sx={{ color: "#fff", fontSize: "2rem" }} />
       </IconButton>
-      <Box sx={{ fontSize: "20px" }}>Название</Box>
+      <Box sx={{ fontSize: "20px" }}>Магазин стройматериалов </Box>
       <Box sx={{ fontSize: "20px" }}>
         <Link
           sx={{

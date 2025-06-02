@@ -18,7 +18,7 @@ async def list_suppliers():
 # Создание нового поставщика
 
 
-@router.post("/", response_model=Supplier)
+@router.post("/")
 async def create_supplier(
     supplier_data: SupplierCreate,
     current_user: User = Depends(get_current_user)
@@ -30,8 +30,8 @@ async def create_supplier(
         )
 
     supplier_dict = supplier_data.dict(exclude_unset=True)
-    db_supplier = await Suppliers(**supplier_dict).save()
-    return db_supplier
+    await Suppliers(**supplier_dict).save()
+    return {'details': "ok"}
 
 # Получение конкретного поставщика
 

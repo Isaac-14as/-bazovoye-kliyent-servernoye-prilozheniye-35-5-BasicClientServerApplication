@@ -12,7 +12,7 @@ export const Profile = ({}) => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "calc(100vh - 100px)",
-        ml: "240px", // Отступ для бокового меню
+        marginLeft: "240px", // Отступ для бокового меню
         bgcolor: "background.default",
       }}
     >

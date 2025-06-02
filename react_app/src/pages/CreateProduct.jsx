@@ -11,7 +11,6 @@ import {
   MenuItem,
   Select,
   Divider,
-  Alert,
 } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { showDefaultSnack } from "../components/DefaultSnack";
@@ -38,7 +37,7 @@ export const CreateProduct = () => {
     const fetchSuppliers = async () => {
       try {
         const response = await authAxios({
-          url: `http://127.0.0.1:8000/suppliers`,
+          url: `http://127.0.0.1:8000/suppliers/`,
           method: "GET",
         });
         setSuppliers(response);
@@ -76,7 +75,7 @@ export const CreateProduct = () => {
 
     try {
       await authAxios({
-        url: `http://127.0.0.1:8000/products`,
+        url: `http://127.0.0.1:8000/products/`,
         method: "POST",
         data: formData,
       });
@@ -93,10 +92,9 @@ export const CreateProduct = () => {
         justifyContent: "center",
         mt: "100px",
         // minHeight: "calc(100vh - 100px)",
-        ml: "240px", // Отступ для бокового меню
+        marginLeft: "240px", // Отступ для бокового меню
         bgcolor: "background.default",
         p: 3,
-        ml: "240px",
       }}
     >
       <Paper

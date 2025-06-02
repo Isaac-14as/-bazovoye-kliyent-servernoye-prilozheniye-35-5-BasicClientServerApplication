@@ -13,6 +13,9 @@ import { CreateUser } from "../pages/CreatUser";
 import { ProductList } from "../pages/ProductList";
 import { UpdateProduct } from "../pages/UpdateProduct";
 import { CreateProduct } from "../pages/CreateProduct";
+import { SupplierList } from "../pages/SupplierList";
+import { CreateSupplier } from "../pages/CreateSupplier";
+import { UpdateSupplier } from "../pages/UpdateSupplier";
 
 const router = createBrowserRouter([
   // Пользователи
@@ -102,6 +105,37 @@ const router = createBrowserRouter([
       <SnackbarProvider maxSnack={3}>
         <RequireAuth>
           <CreateProduct />
+        </RequireAuth>
+      </SnackbarProvider>
+    ),
+  },
+
+  {
+    path: "suppliers",
+    element: (
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <SupplierList />
+        </RequireAuth>
+      </SnackbarProvider>
+    ),
+  },
+  {
+    path: "suppliers/create",
+    element: (
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <CreateSupplier />
+        </RequireAuth>
+      </SnackbarProvider>
+    ),
+  },
+  {
+    path: "suppliers/update/:id",
+    element: (
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <UpdateSupplier />
         </RequireAuth>
       </SnackbarProvider>
     ),

@@ -60,7 +60,7 @@ export const UpdateProduct = () => {
     const fetchSuppliers = async () => {
       try {
         const response = await authAxios({
-          url: `http://127.0.0.1:8000/suppliers`,
+          url: `http://127.0.0.1:8000/suppliers/`,
           method: "GET",
         });
         setSuppliers(response);
@@ -99,9 +99,16 @@ export const UpdateProduct = () => {
 
     try {
       await authAxios({
-        url: `http://127.0.0.1:8000/products/${id}/`,
+        url: `http://127.0.0.1:8000/products/${id}`,
         method: "PUT",
-        data: formData,
+        data: {
+          name: formData.name,
+          unit: formData.unit,
+          purchase_price: formData.purchase_price,
+          selling_price: formData.selling_price,
+          current_quantity: Number(formData.current_quantity),
+          supplier_id: formData.supplier_id,
+        },
       });
       showDefaultSnack(enqueueSnackbar, "Товар успешно обновлен", "success");
     } catch (e) {
@@ -116,10 +123,9 @@ export const UpdateProduct = () => {
         justifyContent: "center",
         mt: "100px",
         // minHeight: "calc(100vh - 100px)",
-        ml: "240px", // Отступ для бокового меню
+        marginLeft: "240px", // Отступ для бокового меню
         bgcolor: "background.default",
         p: 3,
-        ml: "240px",
       }}
     >
       <Paper

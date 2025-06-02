@@ -12,6 +12,7 @@ import {
   Button,
   IconButton,
 } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import { authAxios } from "../api/auth-axios";
@@ -24,7 +25,7 @@ export const ProductList = () => {
     const fetchProducts = async () => {
       try {
         const response = await authAxios({
-          url: "http://127.0.0.1:8000/products",
+          url: "http://127.0.0.1:8000/products/",
           method: "GET",
         });
         setProducts(response);
@@ -45,7 +46,7 @@ export const ProductList = () => {
         minHeight: "calc(100vh - 100px)",
         bgcolor: "background.default",
         p: 3,
-        ml: "240px", // Отступ для бокового меню
+        marginLeft: "240px", // Отступ для бокового меню
       }}
     >
       <Paper
@@ -60,7 +61,12 @@ export const ProductList = () => {
           <Typography variant="h5" component="h1">
             Список товаров
           </Typography>
-          <Button variant="contained" component={Link} to="/products/create">
+          <Button
+            variant="contained"
+            component={Link}
+            to="/products/create"
+            startIcon={<AddIcon />}
+          >
             Добавить товар
           </Button>
         </Box>
@@ -77,6 +83,7 @@ export const ProductList = () => {
               <TableRow>
                 <TableCell>ID</TableCell>
                 <TableCell>Наименование</TableCell>
+                <TableCell>Поставщик</TableCell>
                 <TableCell>Ед. измерения</TableCell>
                 <TableCell align="right">Цена закупки</TableCell>
                 <TableCell align="right">Цена продажи</TableCell>
@@ -89,6 +96,7 @@ export const ProductList = () => {
                 <TableRow key={product.id} hover>
                   <TableCell>{product.id}</TableCell>
                   <TableCell>{product.name}</TableCell>
+                  <TableCell>{product["supplier_id.name"] || "-"}</TableCell>
                   <TableCell>{product.unit}</TableCell>
                   <TableCell align="right">
                     {product.purchase_price} ₽

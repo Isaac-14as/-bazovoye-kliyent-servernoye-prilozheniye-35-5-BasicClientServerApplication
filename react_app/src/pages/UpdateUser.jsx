@@ -97,7 +97,7 @@ export const UpdateUser = () => {
 
   const roles = [
     { value: "admin", label: "Администратор" },
-    { value: "purchaser", label: "Покупатель" },
+    { value: "purchaser", label: "Менеджер по закупкам" },
     { value: "seller", label: "Продавец" },
   ];
 
@@ -108,7 +108,7 @@ export const UpdateUser = () => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "calc(100vh - 100px)",
-        ml: "240px", // Отступ для бокового меню
+        marginLeft: "240px", // Отступ для бокового меню
         bgcolor: "background.default",
       }}
     >

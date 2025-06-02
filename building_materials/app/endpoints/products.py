@@ -10,14 +10,18 @@ router = APIRouter(prefix="/products", tags=["products"])
 # Получение списка всех товаров
 
 
-@router.get("/", response_model=List[Product])
+@router.get("/")
 async def list_products(current_user: User = Depends(get_current_user)):
     if current_user.role not in ["admin", "purchaser"]:
         raise HTTPException(
             status_code=403,
             detail="Only admin and purchasers can create products"
         )
-    return await Products.select().order_by(Products.id).run()
+
+    return await Products.select(
+        Products.all_columns(),  # все поля продукта
+        Products.supplier_id.all_columns()  # все поля поставщика
+    ).order_by(Products.id).run()
 
 # Создание нового товара
 

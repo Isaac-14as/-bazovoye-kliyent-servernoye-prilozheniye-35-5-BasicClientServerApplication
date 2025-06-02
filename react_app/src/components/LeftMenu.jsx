@@ -21,6 +21,10 @@ export const LeftMenu = () => {
       menuItemsList.push({ text: "Товары", path: "/products" });
     }
 
+    if (getUser().role === "admin" || getUser().role === "purchaser") {
+      menuItemsList.push({ text: "Поставщики", path: "/suppliers" });
+    }
+
     setMenuItems(menuItemsList);
   }, []);
 

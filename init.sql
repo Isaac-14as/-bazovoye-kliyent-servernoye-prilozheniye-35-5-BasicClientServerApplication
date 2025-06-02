@@ -11,10 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE suppliers (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    contact_person VARCHAR(100),
     phone VARCHAR(20) NOT NULL,
-    email VARCHAR(100),
-    address TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -81,14 +78,14 @@ INSERT INTO users (username, password_hash, full_name, role) VALUES
 ('seller3', '$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW', 'Николаев Иван', 'seller');
 
 -- Заполнение таблицы поставщиков
-INSERT INTO suppliers (name, contact_person, phone, email, address) VALUES
-('ООО "СтройМатериалы"', 'Иванов Иван', '+79161234567', 'stroy@mail.com', 'г. Москва, ул. Строителей, 15'),
-('ИП Петров', 'Петров Петр', '+79031234567', 'petrov@mail.com', 'г. Москва, ул. Трудовая, 42'),
-('Компания "СтройРесурс"', 'Смирнов Алексей', '+79219876543', 'resurs@mail.com', 'г. Москва, пр-т Мира, 108'),
-('ООО "Кирпичный Двор"', 'Сидоров Михаил', '+79157654321', 'kirpich@mail.com', 'Московская обл., г. Химки, ул. Заводская, 3'),
-('ИП Козлова (сантехника)', 'Козлова Анна', '+79091112233', 'santeh@mail.com', 'г. Москва, ул. Водопроводная, 77'),
-('ООО "МеталлПрофиль"', 'Васильев Денис', '+79032223344', 'metal@mail.com', 'г. Москва, ул. Металлургов, 12'),
-('ИП Федоров (электротовары)', 'Федоров Артем', '+79163334455', 'electro@mail.com', 'г. Москва, ул. Электриков, 5');
+INSERT INTO suppliers (name, phone) VALUES
+('ООО "СтройМатериалы"', '+79161234567'),
+('ИП Петров', '+79031234567'),
+('Компания "СтройРесурс"', '+79219876543'),
+('ООО "Кирпичный Двор"',  '+79157654321'),
+('ИП Козлова (сантехника)',  '+79091112233'),
+('ООО "МеталлПрофиль"',  '+79032223344'),
+('ИП Федоров (электротовары)',  '+79163334455');
 
 -- Заполнение таблицы товаров
 INSERT INTO products (name, supplier_id, unit, purchase_price, selling_price, min_stock_level, current_quantity) VALUES

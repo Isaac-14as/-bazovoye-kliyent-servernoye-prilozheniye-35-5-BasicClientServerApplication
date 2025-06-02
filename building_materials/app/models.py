@@ -29,10 +29,7 @@ class Users(Table):
 # Поставщики
 class Suppliers(Table):
     name = Varchar(length=100)
-    contact_person = Varchar(length=100, null=True)
     phone = Varchar(length=20)
-    email = Varchar(length=100, null=True)
-    address = Text(null=True)
     created_at = Timestamp(default=TimestampNow())
 
 # Товары
