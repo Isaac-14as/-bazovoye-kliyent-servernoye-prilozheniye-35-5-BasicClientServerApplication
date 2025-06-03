@@ -55,8 +55,7 @@ CREATE TABLE sale_items (
     id SERIAL PRIMARY KEY,
     sale_id INTEGER REFERENCES sales(id) ON DELETE CASCADE NOT NULL,
     product_id INTEGER REFERENCES products(id) NOT NULL,
-    quantity INTEGER NOT NULL,
-    unit_price DECIMAL(10,2) NOT NULL
+    quantity INTEGER NOT NULL
 );
 
 -- Заполнение таблицы пользователей (пароли захешированы)
@@ -119,12 +118,12 @@ INSERT INTO sales (user_id, sale_date, client_name) VALUES
 (6, '2023-02-06 13:00:00', 'ИП Новиков');
 
 -- Заполнение таблицы позиций продаж
-INSERT INTO sale_items (sale_id, product_id, quantity, unit_price) VALUES
-(1, 1, 2, 450.00),
-(1, 2, 1, 400.00),
-(2, 3, 10, 130.00),
-(3, 5, 1, 8500.00),
-(4, 4, 30, 70.00),
-(4, 7, 5, 180.00),
-(5, 6, 2, 550.00),
-(5, 1, 1, 450.00);
+INSERT INTO sale_items (sale_id, product_id, quantity) VALUES
+(1, 1, 2),
+(1, 2, 1),
+(2, 3, 10),
+(3, 5, 1),
+(4, 4, 30),
+(4, 7, 5),
+(5, 6, 2),
+(5, 1, 1);

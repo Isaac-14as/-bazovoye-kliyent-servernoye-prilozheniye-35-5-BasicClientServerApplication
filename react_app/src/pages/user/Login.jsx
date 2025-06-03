@@ -10,8 +10,6 @@ export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [error, setError] = useState(null);
-
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -43,7 +41,7 @@ export const Login = () => {
           response.data.access_token
         );
         localStorage.setItem("user", JSON.stringify(response.data.user));
-        navigate("/");
+        navigate("/products");
       } catch (e) {
         showDefaultSnack(enqueueSnackbar, e.response.data.detail, "error");
         console.error(e);
@@ -109,12 +107,6 @@ export const Login = () => {
             Войти
           </Button>
         </Box>
-        <Typography
-          textAlign="center"
-          sx={{ height: "20px", my: "0px", color: "red" }}
-        >
-          {error}
-        </Typography>
       </Paper>
     </Box>
   );

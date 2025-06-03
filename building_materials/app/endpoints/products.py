@@ -12,11 +12,6 @@ router = APIRouter(prefix="/products", tags=["products"])
 
 @router.get("/")
 async def list_products(current_user: User = Depends(get_current_user)):
-    if current_user.role not in ["admin", "purchaser"]:
-        raise HTTPException(
-            status_code=403,
-            detail="Only admin and purchasers can create products"
-        )
 
     return await Products.select(
         Products.all_columns(),  # все поля продукта
@@ -31,11 +26,6 @@ async def create_product(
     product_data: ProductCreate,
     current_user: User = Depends(get_current_user)
 ):
-    if current_user.role not in ["admin", "purchaser"]:
-        raise HTTPException(
-            status_code=403,
-            detail="Only admin and purchasers can create products"
-        )
 
     # Проверяем существование поставщика
     supplier = await Suppliers.objects().where(Suppliers.id == product_data.supplier_id).first()
@@ -70,11 +60,6 @@ async def update_product(
     product_data: ProductUpdate,
     current_user: User = Depends(get_current_user)
 ):
-    if current_user.role not in ["admin", "purchaser"]:
-        raise HTTPException(
-            status_code=403,
-            detail="Only admin and purchasers can update products"
-        )
 
     product = await Products.objects().where(Products.id == product_id).first()
     if not product:

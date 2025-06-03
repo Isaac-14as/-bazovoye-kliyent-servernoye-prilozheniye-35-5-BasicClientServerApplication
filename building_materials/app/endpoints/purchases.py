@@ -11,7 +11,7 @@ from app.schemas import PurchaseCreate, User
 
 router = APIRouter(prefix="/purchases", tags=["purchases"])
 
-# Получение списка всех закупок
+# Получение списка закупок
 
 
 @router.get("/")

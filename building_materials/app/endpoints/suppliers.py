@@ -23,12 +23,6 @@ async def create_supplier(
     supplier_data: SupplierCreate,
     current_user: User = Depends(get_current_user)
 ):
-    if current_user.role not in ["admin", "purchaser"]:
-        raise HTTPException(
-            status_code=403,
-            detail="Only admin and purchasers can create suppliers"
-        )
-
     supplier_dict = supplier_data.dict(exclude_unset=True)
     await Suppliers(**supplier_dict).save()
     return {'details': "ok"}
@@ -55,12 +49,6 @@ async def update_supplier(
     supplier_data: SupplierUpdate,
     current_user: User = Depends(get_current_user)
 ):
-    if current_user.role not in ["admin", "purchaser"]:
-        raise HTTPException(
-            status_code=403,
-            detail="Only admin and purchasers can update suppliers"
-        )
-
     supplier = await Suppliers.objects().where(Suppliers.id == supplier_id).first()
     if not supplier:
         raise HTTPException(
@@ -84,12 +72,6 @@ async def delete_supplier(
     supplier_id: int,
     current_user: User = Depends(get_current_user)
 ):
-    if current_user.role != "admin":
-        raise HTTPException(
-            status_code=403,
-            detail="Only admin can delete suppliers"
-        )
-
     supplier = await Suppliers.objects().where(Suppliers.id == supplier_id).first()
     if not supplier:
         raise HTTPException(

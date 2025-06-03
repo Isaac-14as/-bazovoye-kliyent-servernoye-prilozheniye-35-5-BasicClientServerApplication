@@ -10,24 +10,30 @@ import { Link } from "react-router-dom";
 import { getUser } from "../helpers/helpers";
 
 export const LeftMenu = () => {
-  const [menuItems, setMenuItems] = useState([]);
+  // const [menuItems, setMenuItems] = useState([]);
 
-  useEffect(() => {
-    let menuItemsList = [];
-    if (getUser().role === "admin") {
-      menuItemsList.push({ text: "Пользователи", path: "/users" });
-    }
-    if (getUser().role === "admin" || getUser().role === "purchaser") {
-      menuItemsList.push({ text: "Товары", path: "/products" });
-    }
-
-    if (getUser().role === "admin" || getUser().role === "purchaser") {
-      menuItemsList.push({ text: "Поставщики", path: "/suppliers" });
-      menuItemsList.push({ text: "Закупки", path: "/purchases" });
-    }
-
-    setMenuItems(menuItemsList);
-  }, []);
+  let menuItems = [];
+  if (getUser().role === "admin") {
+    menuItems = [
+      { text: "Пользователи", path: "/users" },
+      { text: "Товары", path: "/products" },
+      { text: "Поставщики", path: "/suppliers" },
+      { text: "Закупки", path: "/purchases" },
+      { text: "Продажи", path: "/sales" },
+    ];
+  } else if (getUser().role === "purchaser") {
+    menuItems = [
+      { text: "Товары", path: "/products" },
+      { text: "Поставщики", path: "/suppliers" },
+      { text: "Закупки", path: "/purchases" },
+    ];
+  } else if (getUser().role === "seller") {
+    menuItems = [
+      { text: "Товары", path: "/products" },
+      { text: "Поставщики", path: "/suppliers" },
+      { text: "Продажи", path: "/sales" },
+    ];
+  }
 
   return (
     <Box

@@ -6,10 +6,6 @@ import {
   Typography,
   TextField,
   Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   Divider,
   Table,
   TableBody,
@@ -17,31 +13,22 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  IconButton,
-  Chip,
 } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { showDefaultSnack } from "../../components/DefaultSnack";
-import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { authAxios } from "../../api/auth-axios";
 import dayjs from "dayjs";
 
-export const UpdatePurchase = () => {
+export const ViewPurchase = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
-  const [products, setProducts] = useState([]);
   const [purchaseData, setPurchaseData] = useState({
     purchase_date: dayjs().format("YYYY-MM-DD"),
   });
   const [items, setItems] = useState([]);
-  const [currentItem, setCurrentItem] = useState({
-    product_id: "",
-    quantity: 1,
-    unit_price: 0,
-  });
+
   const [suppliers, setSuppliers] = useState([]);
 
   useEffect(() => {
@@ -54,7 +41,6 @@ export const UpdatePurchase = () => {
         setPurchaseData({
           purchase_date: dayjs(response.purchase_date).format("YYYY-MM-DD"),
         });
-        // Преобразуем данные из API в наш формат
         const formattedItems = response.items.map((item) => ({
           ...item,
           product_name: item["product_id.name"],
@@ -86,28 +72,11 @@ export const UpdatePurchase = () => {
       }
     };
 
-    const fetchProducts = async () => {
-      try {
-        const response = await authAxios({
-          url: `http://127.0.0.1:8000/products/`,
-          method: "GET",
-        });
-        setProducts(response);
-      } catch (e) {
-        console.error(e);
-        showDefaultSnack(
-          enqueueSnackbar,
-          e.response?.data?.detail || "Ошибка загрузки товаров",
-          "error"
-        );
-      }
-    };
-
     if (id) {
       getPurchase();
     }
     fetchSuppliers();
-    fetchProducts();
+    // fetchProducts();
   }, [id]);
 
   const handlePurchaseChange = (e) => {

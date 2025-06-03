@@ -21,8 +21,11 @@ import { SupplierList } from "../pages/supplier/SupplierList";
 import { CreateSupplier } from "../pages/supplier/CreateSupplier";
 import { UpdateSupplier } from "../pages/supplier/UpdateSupplier";
 import { PurchaseList } from "../pages/purchase/PurchaseList";
-import { UpdatePurchase } from "../pages/purchase/UpdatePurchase";
+import { ViewPurchase } from "../pages/purchase/ViewPurchase";
 import { CreatePurchase } from "../pages/purchase/CreatePurchase";
+import { SaleList } from "../pages/sale/SaleList";
+import { ViewSale } from "../pages/sale/ViewSale";
+import { CreateSale } from "../pages/sale/CreateSale";
 
 const router = createBrowserRouter([
   // Пользователи
@@ -34,16 +37,7 @@ const router = createBrowserRouter([
       </SnackbarProvider>
     ),
   },
-  {
-    path: "",
-    element: (
-      <SnackbarProvider maxSnack={3}>
-        <RequireAuth>
-          <Main />
-        </RequireAuth>
-      </SnackbarProvider>
-    ),
-  },
+
   {
     path: "profile",
     element: (
@@ -160,11 +154,11 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "purchases/update/:id",
+    path: "purchases/view/:id",
     element: (
       <SnackbarProvider maxSnack={3}>
         <RequireAuth>
-          <UpdatePurchase />
+          <ViewPurchase />
         </RequireAuth>
       </SnackbarProvider>
     ),
@@ -176,6 +170,38 @@ const router = createBrowserRouter([
       <SnackbarProvider maxSnack={3}>
         <RequireAuth>
           <CreatePurchase />
+        </RequireAuth>
+      </SnackbarProvider>
+    ),
+  },
+
+  {
+    path: "sales",
+    element: (
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <SaleList />
+        </RequireAuth>
+      </SnackbarProvider>
+    ),
+  },
+  {
+    path: "sales/view/:id",
+    element: (
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <ViewSale />
+        </RequireAuth>
+      </SnackbarProvider>
+    ),
+  },
+
+  {
+    path: "sales/create",
+    element: (
+      <SnackbarProvider maxSnack={3}>
+        <RequireAuth>
+          <CreateSale />
         </RequireAuth>
       </SnackbarProvider>
     ),

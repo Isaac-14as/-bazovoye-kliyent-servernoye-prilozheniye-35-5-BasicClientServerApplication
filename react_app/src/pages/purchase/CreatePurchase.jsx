@@ -275,7 +275,6 @@ export const CreatePurchase = () => {
 
             <TextField
               sx={{ flex: 1 }}
-              disabled
               type="number"
               label="Цена за единицу *"
               name="unit_price"

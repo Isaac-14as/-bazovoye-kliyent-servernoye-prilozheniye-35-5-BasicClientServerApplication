@@ -24,7 +24,6 @@ export const CreateProduct = () => {
   const [formData, setFormData] = useState({
     name: "",
     unit: "",
-    purchase_price: 0,
     selling_price: 0,
     current_quantity: 0,
     supplier_id: "",
@@ -60,18 +59,6 @@ export const CreateProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Валидация цен
-    if (
-      parseFloat(formData.selling_price) <= parseFloat(formData.purchase_price)
-    ) {
-      showDefaultSnack(
-        enqueueSnackbar,
-        "Цена продажи должна быть больше цены закупки",
-        "error"
-      );
-      return;
-    }
 
     try {
       await authAxios({
@@ -134,17 +121,6 @@ export const CreateProduct = () => {
           />
 
           <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
-            <TextField
-              required
-              fullWidth
-              type="number"
-              label="Цена закупки"
-              name="purchase_price"
-              value={formData.purchase_price}
-              onChange={handleChange}
-              inputProps={{ min: 0, step: 0.01 }}
-            />
-
             <TextField
               required
               fullWidth

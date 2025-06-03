@@ -42,7 +42,7 @@ export const Header = ({}) => {
             borderColor: "#1976d2",
           },
         }}
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/products")}
       >
         <HomeIcon sx={{ color: "#fff", fontSize: "2rem" }} />
       </IconButton>

@@ -180,7 +180,19 @@ class SaleWithDetails(Sale):
     items: List[SaleItem]
 
 
+class SaleItemCreate(BaseModel):
+    product_id: int
+    quantity: int
+
+
+class SaleCreate(BaseModel):
+    client_name: Optional[str] = None
+    sale_date: date
+    items: List[SaleItemCreate]
+
 # товары
+
+
 class ProductBase(BaseModel):
     name: str = Field(..., max_length=100)
     supplier_id: int

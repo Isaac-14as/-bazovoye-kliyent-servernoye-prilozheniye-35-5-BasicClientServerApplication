@@ -63,7 +63,7 @@ class PurchaseItems(Table):
 
 
 class Sales(Table):
-    user = ForeignKey(Users)  # Кто оформил продажу
+    user_id = ForeignKey(Users)  # Кто оформил продажу
     sale_date = Timestamp(default=TimestampNow())
     client_name = Varchar(length=100, null=True)
 
@@ -71,6 +71,6 @@ class Sales(Table):
 
 
 class SaleItems(Table):
-    sale = ForeignKey(Sales)
-    product = ForeignKey(Products)
+    sale_id = ForeignKey(Sales)
+    product_id = ForeignKey(Products)
     quantity = Integer()

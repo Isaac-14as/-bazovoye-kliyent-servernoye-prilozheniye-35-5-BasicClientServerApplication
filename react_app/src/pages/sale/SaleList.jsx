@@ -15,26 +15,40 @@ import {
 
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddIcon from "@mui/icons-material/Add";
-import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import { authAxios } from "../../api/auth-axios";
 import { scrollSyles } from "../../helpers/styles";
 
-export const PurchaseList = () => {
-  const [purchases, setPurchases] = useState([]);
+export const SaleList = () => {
+  const [sales, setSales] = useState([]);
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
-    const getPurchases = async () => {
+    const getSales = async () => {
       try {
         const response = await authAxios({
-          url: "http://127.0.0.1:8000/purchases/",
+          url: "http://127.0.0.1:8000/sales/",
           method: "GET",
         });
-        setPurchases(response);
+        setSales(response);
       } catch (e) {
         console.error(e);
       }
     };
-    getPurchases();
+    const fetchProducts = async () => {
+      try {
+        const response = await authAxios({
+          url: "http://127.0.0.1:8000/products/",
+          method: "GET",
+        });
+        setProducts(response);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    fetchProducts();
+    getSales();
   }, []);
 
   return (
@@ -59,15 +73,15 @@ export const PurchaseList = () => {
       >
         <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
           <Typography variant="h5" component="h1">
-            Список закупок
+            Список продаж
           </Typography>
           <Button
             variant="contained"
             component={Link}
-            to="/purchases/create"
+            to="/sales/create"
             startIcon={<AddIcon />}
           >
-            Добавить закупку
+            Добавить продажу
           </Button>
         </Box>
 
@@ -83,31 +97,34 @@ export const PurchaseList = () => {
               <TableRow>
                 <TableCell>ID</TableCell>
                 <TableCell>Дата/время</TableCell>
-                <TableCell>Менеджер по закупкам</TableCell>
+                <TableCell>Продавец</TableCell>
                 <TableCell>Общая сумма</TableCell>
                 <TableCell>Действия</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {purchases.map((purchase) => {
+              {sales.map((sale) => {
                 let totalAmount = 0;
-                for (let i = 0; i < purchase.items.length; i++) {
+                for (let i = 0; i < sale.items.length; i++) {
                   totalAmount +=
-                    purchase.items[i].quantity * purchase.items[i].unit_price;
+                    sale.items[i].quantity *
+                    products.find(
+                      (item) => item.id === sale.items[i]["product_id.id"]
+                    ).selling_price;
                 }
                 return (
-                  <TableRow key={purchase.id} hover>
-                    <TableCell>{purchase.id}</TableCell>
+                  <TableRow key={sale.id} hover>
+                    <TableCell>{sale.id}</TableCell>
                     <TableCell>
-                      {purchase.purchase_date.slice(0, 10)} (
-                      {purchase.purchase_date.slice(11, 16)})
+                      {sale.sale_date.slice(0, 10)} (
+                      {sale.sale_date.slice(11, 16)})
                     </TableCell>
-                    <TableCell>{purchase["user_id.full_name"]}</TableCell>
+                    <TableCell>{sale["user_id.full_name"]}</TableCell>
                     <TableCell>{totalAmount} ₽</TableCell>
                     <TableCell>
                       <IconButton
                         component={Link}
-                        to={`/purchases/view/${purchase.id}`}
+                        to={`/sales/view/${sale.id}`}
                         color="primary"
                       >
                         <VisibilityIcon />
