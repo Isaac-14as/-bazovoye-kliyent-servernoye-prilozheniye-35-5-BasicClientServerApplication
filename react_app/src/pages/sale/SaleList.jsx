@@ -27,7 +27,7 @@ export const SaleList = () => {
     const getSales = async () => {
       try {
         const response = await authAxios({
-          url: "http://127.0.0.1:8000/sales/",
+          url: `http://localhost:8000/sales/`,
           method: "GET",
         });
         setSales(response);
@@ -38,7 +38,7 @@ export const SaleList = () => {
     const fetchProducts = async () => {
       try {
         const response = await authAxios({
-          url: "http://127.0.0.1:8000/products/",
+          url: `http://localhost:8000/products/`,
           method: "GET",
         });
         setProducts(response);

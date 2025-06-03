@@ -33,7 +33,7 @@ export const UpdateUser = () => {
     const getUser = async () => {
       try {
         const response = await authAxios({
-          url: `http://127.0.0.1:8000/users/${id}`,
+          url: `http://localhost:8000/users/${id}`,
         });
         setFormData({
           username: response.username,
@@ -80,7 +80,7 @@ export const UpdateUser = () => {
 
     try {
       await authAxios({
-        url: `http://127.0.0.1:8000/users/${id}`,
+        url: `http://localhost:8000/users/${id}`,
         method: "PUT",
         data: dataToSend,
       });

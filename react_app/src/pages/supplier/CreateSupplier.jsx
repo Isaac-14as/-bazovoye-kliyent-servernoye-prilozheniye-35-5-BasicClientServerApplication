@@ -44,7 +44,7 @@ export const CreateSupplier = () => {
 
     try {
       await authAxios({
-        url: "http://127.0.0.1:8000/suppliers/",
+        url: `http://localhost:8000/suppliers/`,
         method: "POST",
         data: formData,
       });

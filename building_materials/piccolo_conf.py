@@ -1,14 +1,14 @@
+import os
 from piccolo.engine.postgres import PostgresEngine
 from piccolo.conf.apps import AppRegistry
 
 DB = PostgresEngine(
     config={
-        "host": "127.0.0.1",
-        "port": 5432,
-        "database": "my_db",
-        "user": "postgres",
-        "password": "postgres"
+        "host": os.getenv("DB_HOST", "db"),
+        "port": int(os.getenv("DB_PORT", "5432")),
+        "database": os.getenv("DB_NAME", "my_db"),
+        "user": os.getenv("DB_USER", "postgres"),
+        "password": os.getenv("DB_PASSWORD", "postgres")
     }
 )
-
 APP_REGISTRY = AppRegistry(apps=[])

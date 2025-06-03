@@ -32,7 +32,7 @@ async def create_admin_user():
     admin_username = "admin"
     admin_data = UserCreate(
         username=admin_username,
-        password="admin",  # Лучше использовать более сложный пароль в production
+        password="admin",
         full_name="admin",
         role="admin"
     )

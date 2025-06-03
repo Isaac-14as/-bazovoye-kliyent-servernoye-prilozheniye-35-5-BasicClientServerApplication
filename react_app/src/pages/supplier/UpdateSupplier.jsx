@@ -27,7 +27,7 @@ export const UpdateSupplier = () => {
     const fetchSupplierData = async () => {
       try {
         const response = await authAxios({
-          url: `http://127.0.0.1:8000/suppliers/${id}`,
+          url: `http://localhost:8000/suppliers/${id}`,
           method: "GET",
         });
         setFormData({
@@ -66,7 +66,7 @@ export const UpdateSupplier = () => {
 
     try {
       await authAxios({
-        url: `http://127.0.0.1:8000/suppliers/${id}`,
+        url: `http://localhost:8000/suppliers/${id}`,
         method: "PUT",
         data: formData,
       });

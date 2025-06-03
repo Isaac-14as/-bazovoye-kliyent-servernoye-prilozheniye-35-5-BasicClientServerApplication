@@ -48,7 +48,7 @@ export const CreateUser = () => {
 
     try {
       await authAxios({
-        url: `http://127.0.0.1:8000/users/register/`,
+        url: `http://localhost:8000/users/register/`,
         method: "POST",
         data: dataToSend,
       });

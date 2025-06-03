@@ -26,7 +26,7 @@ export const UserList = ({}) => {
     const getUsers = async () => {
       try {
         const response = await authAxios({
-          url: "http://127.0.0.1:8000/users/",
+          url: `http://localhost:8000/users/`,
           method: "GET",
         });
         setUsers(response);

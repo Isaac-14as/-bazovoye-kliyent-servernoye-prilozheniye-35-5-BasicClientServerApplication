@@ -46,7 +46,7 @@ export const CreateSale = () => {
     const fetchProducts = async () => {
       try {
         const response = await authAxios({
-          url: "http://127.0.0.1:8000/products/",
+          url: `http://localhost:8000/products/`,
           method: "GET",
         });
         setProducts(response.filter((p) => p.current_quantity > 0));
@@ -122,7 +122,7 @@ export const CreateSale = () => {
 
     try {
       await authAxios({
-        url: `http://127.0.0.1:8000/sales/`,
+        url: `http://localhost:8000/sales/`,
         method: "POST",
         data: {
           client_name: clientName,

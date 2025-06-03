@@ -25,7 +25,7 @@ export const ProductList = () => {
     const fetchProducts = async () => {
       try {
         const response = await authAxios({
-          url: "http://127.0.0.1:8000/products/",
+          url: `http://localhost:8000/products/`,
           method: "GET",
         });
         setProducts(response);

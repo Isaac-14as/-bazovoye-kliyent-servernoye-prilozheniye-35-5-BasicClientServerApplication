@@ -36,7 +36,7 @@ export const CreateProduct = () => {
     const fetchSuppliers = async () => {
       try {
         const response = await authAxios({
-          url: `http://127.0.0.1:8000/suppliers/`,
+          url: `${process.env.REACT_APP_API_URL}/suppliers/`,
           method: "GET",
         });
         setSuppliers(response);
@@ -62,13 +62,17 @@ export const CreateProduct = () => {
 
     try {
       await authAxios({
-        url: `http://127.0.0.1:8000/products/`,
+        url: `http://localhost:8000/products/`,
         method: "POST",
         data: formData,
       });
       showDefaultSnack(enqueueSnackbar, "Товар успешно добавлен", "success");
     } catch (e) {
-      showDefaultSnack(enqueueSnackbar, e.response.data.detail, "error");
+      showDefaultSnack(
+        enqueueSnackbar,
+        e.response.data.detail || "Ошибка в добавлении товара",
+        "error"
+      );
     }
   };
 

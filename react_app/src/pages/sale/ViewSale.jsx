@@ -44,7 +44,7 @@ export const ViewSale = () => {
       try {
         // Загружаем список товаров
         const productsResponse = await authAxios({
-          url: "http://127.0.0.1:8000/products/",
+          url: `http://localhost:8000/products/`,
           method: "GET",
         });
 
@@ -55,7 +55,7 @@ export const ViewSale = () => {
         // Загружаем данные продажи, если это редактирование
         if (id) {
           const saleResponse = await authAxios({
-            url: `http://127.0.0.1:8000/sales/${id}`,
+            url: `http://localhost:8000/sales/${id}`,
             method: "GET",
           });
           console.log(saleResponse);
@@ -200,7 +200,7 @@ export const ViewSale = () => {
                   disabled={items.length === 0}
                   onClick={async () => {
                     try {
-                      await authAxios.post("http://127.0.0.1:8000/sales/", {
+                      await authAxios.post(`http://localhost:8000/sales/`, {
                         client_name: clientName,
                         sale_date: dayjs(saleDate).format("YYYY-MM-DD"),
                         items: items.map((item) => ({

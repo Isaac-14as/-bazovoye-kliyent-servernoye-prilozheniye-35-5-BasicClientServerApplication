@@ -26,7 +26,7 @@ export const PurchaseList = () => {
     const getPurchases = async () => {
       try {
         const response = await authAxios({
-          url: "http://127.0.0.1:8000/purchases/",
+          url: `http://localhost:8000/purchases/`,
           method: "GET",
         });
         setPurchases(response);

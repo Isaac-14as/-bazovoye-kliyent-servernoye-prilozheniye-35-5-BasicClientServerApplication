@@ -17,5 +17,32 @@ services:
       - "5432:5432"
     restart: unless-stopped
 
+  server:
+    build:
+      context: ./building_materials
+      dockerfile: Dockerfile
+    container_name: my_server
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  client:
+    build: ./react_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./react_app:/app # Монтируем только исходники приложения
+      - /app/node_modules # Сохраняем node_modules отдельно
+    environment:
+      - REACT_APP_SERVER_API_URL=http://localhost:8000
+      - BROWSER=none
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    tty: true
+
 volumes:
   postgres_data:

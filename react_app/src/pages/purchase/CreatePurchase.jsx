@@ -47,7 +47,7 @@ export const CreatePurchase = () => {
     const fetchSuppliers = async () => {
       try {
         const response = await authAxios({
-          url: `http://127.0.0.1:8000/suppliers/`,
+          url: `http://localhost:8000/suppliers/`,
           method: "GET",
         });
         setSuppliers(response);
@@ -64,7 +64,7 @@ export const CreatePurchase = () => {
     const fetchProducts = async () => {
       try {
         const response = await authAxios({
-          url: `http://127.0.0.1:8000/products/`,
+          url: `http://localhost:8000/products/`,
           method: "GET",
         });
         setProducts(response);
@@ -171,7 +171,7 @@ export const CreatePurchase = () => {
       console.log(payload);
 
       const response = await authAxios({
-        url: "http://127.0.0.1:8000/purchases/",
+        url: `http://localhost:8000/purchases/`,
         method: "POST",
         data: payload,
       });
