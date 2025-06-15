@@ -36,7 +36,7 @@ export const CreateProduct = () => {
     const fetchSuppliers = async () => {
       try {
         const response = await authAxios({
-          url: `${process.env.REACT_APP_API_URL}/suppliers/`,
+          url: `http://localhost:8000/suppliers/`,
           method: "GET",
         });
         setSuppliers(response);

@@ -130,7 +130,7 @@ export const UpdateSupplier = () => {
               Отмена
             </Button>
             <Button type="submit" variant="contained">
-              Создать поставщика
+              Изменить поставщика
             </Button>
           </Box>
         </Box>

@@ -215,7 +215,11 @@ const router = createBrowserRouter([
   // },
   {
     path: "*",
-    element: <Box>404</Box>,
+    element: (
+      <RequireAuth>
+        <Box>404</Box>
+      </RequireAuth>
+    ),
   },
 ]);
 
